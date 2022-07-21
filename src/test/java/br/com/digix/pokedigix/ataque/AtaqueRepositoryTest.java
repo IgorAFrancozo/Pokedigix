@@ -16,16 +16,20 @@ public class AtaqueRepositoryTest {
   public void deve_salvar_um_ataque() {
     // Arrange
     Long idEsperado = 1L;
-    String nome = "Aqua Jet";
-    double forca = 25;
-    double acuracia = 90;
-    String descricao = "Jato poderoso de água, que pode afogar os inimigos";
-    double ponto_de_poder = 43;
+    String nomeEsperado = "Aqua Jet";
+    double forcaEsperada = 25;
+    double acuraciaEsperada = 90;
+    String descricaoEsperada = "Jato poderoso de água, que pode afogar os inimigos";
+    double ponto_de_poderEsperada = 43;
     Categoria categoria = Categoria.FISICO;
     //Act
-    Ataque ataque = new Ataque(descricao, ponto_de_poder, ponto_de_poder, descricao, ponto_de_poder, categoria);
+    Ataque ataque = new Ataque(nomeEsperado, forcaEsperada, acuraciaEsperada, descricaoEsperada, ponto_de_poderEsperada, categoria);
     ataqueRepository.save(ataque);
     //Assert
     assertEquals(idEsperado, ataque.getId());
+    assertEquals(nomeEsperado, ataque.getNome());
+    assertEquals(forcaEsperada, ataque.getForca());
+    assertEquals(acuraciaEsperada, ataque.getAcuracia());
+    assertEquals(ponto_de_poderEsperada, ataque.getPonto_de_poder());
   }
 }

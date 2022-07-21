@@ -15,7 +15,7 @@ public class TipoRepositoryTest {
   public void deve_salvar_um_tipo() {
     // Arrange
     String nomeEsperado = "Água";
-    Long idEsperado = 1L;
+    Long idEsperado = 2L;
     //Act
     Tipo tipo = new Tipo(nomeEsperado);
     tipoRepository.save(tipo);
