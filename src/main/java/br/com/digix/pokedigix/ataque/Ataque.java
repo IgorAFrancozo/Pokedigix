@@ -1,5 +1,6 @@
 package br.com.digix.pokedigix.ataque;
 
+import br.com.digix.pokedigix.tipo.Tipo;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -7,6 +8,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Ataque {
@@ -33,13 +35,17 @@ public class Ataque {
   @Column(nullable = false)
   private Categoria categoria;
 
+  @ManyToOne
+  private Tipo tipo;
+
   public Ataque(
     String nome,
     double forca,
     double acuracia,
     String descricao,
     double ponto_de_poder,
-    Categoria categoria
+    Categoria categoria,
+    Tipo tipo
   ) {
     this.nome = nome;
     this.forca = forca;
@@ -47,6 +53,11 @@ public class Ataque {
     this.descricao = descricao;
     this.ponto_de_poder = ponto_de_poder;
     this.categoria = categoria;
+    this.tipo = tipo;
+  }
+
+  public Tipo getTipo() {
+    return this.tipo;
   }
 
   public String getNome() {
