@@ -2,7 +2,12 @@ package br.com.digix.pokedigix.pokemon;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
+
+import br.com.digix.pokedigix.tipo.Tipo;
 
 public class PokemonTest {
 
@@ -10,23 +15,26 @@ public class PokemonTest {
     public void deve_poder_criar_um_pokemon() {
         // Arrange
         String nome = "Squirtle";
-        int altura = 44;
-        int peso = 3;
-        String genero = "M";
+        double altura = 44;
+        double peso = 3;
+        Genero genero = Genero.MASCULINO;
         int numeroPokedex = 07;
         int nivel = 15;
         int felicidade = 150;
+        List<Tipo> tipos = new ArrayList<>();
+        tipos.add(new Tipo("Água"));
 
         // Act
-        Pokemon pokemon = new Pokemon(nome, altura, peso, genero, numeroPokedex, nivel, felicidade);
+        Pokemon squirtle = new Pokemon(nome, altura, peso, genero, numeroPokedex, nivel, felicidade, tipos);
 
         // Assert
-        assertEquals(nome, pokemon.getNome());
-        assertEquals(nivel, pokemon.getNivel());
-        assertEquals(felicidade, pokemon.getFelicidade());
-        assertEquals(altura, pokemon.getAltura());
-        assertEquals(peso, pokemon.getPeso());
-        assertEquals(genero, pokemon.getGenero());
-        assertEquals(numeroPokedex, pokemon.getNumero_pokedex());
+        assertEquals(nome, squirtle.getNome());
+        assertEquals(nivel, squirtle.getNivel());
+        assertEquals(felicidade, squirtle.getFelicidade());
+        assertEquals(altura, squirtle.getAltura());
+        assertEquals(peso, squirtle.getPeso());
+        assertEquals(genero, squirtle.getGenero(genero));
+        assertEquals(numeroPokedex, squirtle.getNumero_pokedex());
+        assertEquals(tipos, squirtle.getTipos());
     }
 }

@@ -2,9 +2,14 @@ package br.com.digix.pokedigix.pokemon;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+
+import br.com.digix.pokedigix.tipo.Tipo;
 
 @DataJpaTest
 public class PokemonRepositoryTest {
@@ -17,16 +22,18 @@ public class PokemonRepositoryTest {
         String nome = "Squirtle";
         int altura = 44;
         int peso = 3;
-        String genero = "M";
+        Genero genero = Genero.MASCULINO;
         int numeroPokedex = 07;
         int nivel = 15;
         int felicidade = 150;
+        List<Tipo> tipos = new ArrayList<>();
+        tipos.add(new Tipo("Água"));
 
         // Act
-        Pokemon pokemon = new Pokemon(nome, altura, peso, genero, numeroPokedex, nivel, felicidade);
+        Pokemon squirtle = new Pokemon(nome, altura, peso, genero, numeroPokedex, nivel, felicidade, tipos);
 
-        pokemonRepository.save(pokemon);
+        pokemonRepository.save(squirtle);
 
-        assertNotNull(pokemon.getId());
+        assertNotNull(squirtle.getId());
     }
 }

@@ -1,10 +1,17 @@
 package br.com.digix.pokedigix.pokemon;
 
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import br.com.digix.pokedigix.tipo.Tipo;
 
 @Entity
 public class Pokemon {
@@ -19,22 +26,26 @@ public class Pokemon {
   double altura;
   @Column(nullable = false)
   double peso;
-  @Column(nullable = false)
-  String genero;
+  @Enumerated(EnumType.STRING)
+  @Column(nullable = false, length = 10)
+  Genero genero;
   @Column(nullable = false)
   double numero_pokedex;
   @Column(nullable = false)
   double nivel;
   double felicidade;
+  @ManyToMany
+  private Collection<Tipo> tipos;
 
   public Pokemon(
     String nome,
     double altura,
     double peso,
-    String genero,
+    Genero genero,
     double numero_pokedex,
     double nivel,
-    double felicidade
+    double felicidade,
+    Collection<Tipo> tipos
   ) {
     this.nome = nome;
     this.altura = altura;
@@ -43,6 +54,7 @@ public class Pokemon {
     this.numero_pokedex = numero_pokedex;
     this.nivel = nivel;
     this.felicidade = felicidade;
+    this.tipos = tipos;
   }
 
   public String getNome() {
@@ -69,11 +81,11 @@ public class Pokemon {
     this.peso = peso;
   }
 
-  public String getGenero() {
-    return genero;
+  public Genero getGenero(Genero genero) {
+    return this.genero;
   }
 
-  public void setGenero(String genero) {
+  public void setGenero(Genero genero) {
     this.genero = genero;
   }
 
@@ -99,6 +111,13 @@ public class Pokemon {
 
   public void setFelicidade(double felicidade) {
     this.felicidade = felicidade;
+  }
+
+  public Collection<Tipo> getTipos() {
+    return tipos;
+  }
+  public Collection<Tipo> setTipos() {
+    return tipos;
   }
 
   public Long getId() {

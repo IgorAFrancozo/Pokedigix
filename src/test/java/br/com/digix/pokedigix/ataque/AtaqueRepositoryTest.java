@@ -3,12 +3,12 @@ package br.com.digix.pokedigix.ataque;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import br.com.digix.pokedigix.tipo.Tipo;
-import br.com.digix.pokedigix.tipo.TipoRepository;
-import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+
+import br.com.digix.pokedigix.tipo.Tipo;
+import br.com.digix.pokedigix.tipo.TipoRepository;
 
 @DataJpaTest
 public class AtaqueRepositoryTest {
@@ -29,7 +29,7 @@ public class AtaqueRepositoryTest {
       "Jato poderoso de água, que pode afogar os inimigos";
     double ponto_de_poderEsperada = 43;
     Categoria categoria = Categoria.FISICO;
-    Tipo tipo = new Tipo("Fantasma");
+    Tipo tipo = new Tipo("Água");
     //Act
     Ataque ataque = new Ataque(
       nomeEsperado,
@@ -57,7 +57,7 @@ public class AtaqueRepositoryTest {
     String descricao = "Jato poderoso de água, que pode afogar os inimigos";
     int ponto_de_poder = 25;
     Categoria categoria = Categoria.FISICO;
-    Tipo tipoEsperado = new Tipo("Fantasma");
+    Tipo tipoEsperado = new Tipo("Água");
 
     Ataque ataque = new Ataque(
       descricao,
@@ -84,7 +84,7 @@ public class AtaqueRepositoryTest {
     String descricao = "Jato poderoso de água, que pode afogar os inimigos";
     int ponto_de_poder = 25;
     Categoria categoria = Categoria.FISICO;
-    Tipo tipoEsperado = new Tipo("Fantasma");
+    Tipo tipoEsperado = new Tipo("Água");
 
     Ataque ataque = new Ataque(
       descricao,
