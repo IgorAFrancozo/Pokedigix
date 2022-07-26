@@ -1,6 +1,10 @@
 package br.com.digix.pokedigix.ataque;
 
+import br.com.digix.pokedigix.pokemon.Pokemon;
 import br.com.digix.pokedigix.tipo.Tipo;
+
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -8,6 +12,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -38,6 +43,10 @@ public class Ataque {
   @ManyToOne
   private Tipo tipo;
 
+  @ManyToMany(mappedBy = "ataques")
+  Collection <Pokemon> pokemons;
+
+  
   public Ataque(
     String nome,
     double forca,
@@ -98,6 +107,10 @@ public class Ataque {
 
   public void setPonto_de_poder(double ponto_de_poder) {
     this.ponto_de_poder = ponto_de_poder;
+  }
+  
+  public Collection<Pokemon> getPokemons() {
+    return pokemons;
   }
 
   public Long getId() {
