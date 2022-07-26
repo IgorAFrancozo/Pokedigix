@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import br.com.digix.pokedigix.ataque.Ataque;
 import br.com.digix.pokedigix.tipo.Tipo;
 
 public class PokemonTest {
@@ -25,7 +26,7 @@ public class PokemonTest {
         tipos.add(new Tipo("Água"));
 
         // Act
-        Pokemon squirtle = new Pokemon(nome, altura, peso, genero, numeroPokedex, nivel, felicidade, tipos);
+        Pokemon squirtle = new PokemonBuilder().construir();
 
         // Assert
         assertEquals(nome, squirtle.getNome());
@@ -35,6 +36,12 @@ public class PokemonTest {
         assertEquals(peso, squirtle.getPeso());
         assertEquals(genero, squirtle.getGenero(genero));
         assertEquals(numeroPokedex, squirtle.getNumero_pokedex());
-        assertEquals(tipos, squirtle.getTipos());
+    }
+
+    @Test
+    public void deve_cadastrar_um_tipo_para_o_pokemon(){
+        Tipo tipo = new Tipo("Água");
+
+        Pokemon squirtle = new PokemonBuilder().comTipo(tipo).construir();
     }
 }

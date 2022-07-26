@@ -1,7 +1,10 @@
 package br.com.digix.pokedigix.pokemon;
 
+import br.com.digix.pokedigix.ataque.Ataque;
+import br.com.digix.pokedigix.tipo.Tipo;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,9 +12,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-
-import br.com.digix.pokedigix.tipo.Tipo;
 
 @Entity
 public class Pokemon {
@@ -22,20 +25,40 @@ public class Pokemon {
 
   @Column(nullable = false, length = 20)
   String nome;
+
   @Column(nullable = false)
   double altura;
+
   @Column(nullable = false)
   double peso;
+
   @Enumerated(EnumType.STRING)
   @Column(nullable = false, length = 10)
   Genero genero;
+
   @Column(nullable = false)
   double numero_pokedex;
+
   @Column(nullable = false)
   double nivel;
+
   double felicidade;
-  @ManyToMany
+
+  @ManyToMany(cascade = CascadeType.PERSIST)
+  @JoinTable(
+    name = "pokemon_tipo",
+    joinColumns = @JoinColumn(name = "pokemon_id"),
+    inverseJoinColumns = @JoinColumn(name = "tipo_id")
+  )
   private Collection<Tipo> tipos;
+
+  @ManyToMany(cascade = CascadeType.PERSIST)
+  @JoinTable(
+    name = "pokemon_ataque",
+    joinColumns = @JoinColumn(name = "pokemon_id"),
+    inverseJoinColumns = @JoinColumn(name = "ataque_id")
+  )
+  private Collection<Ataque> ataques;
 
   public Pokemon(
     String nome,
@@ -45,7 +68,8 @@ public class Pokemon {
     double numero_pokedex,
     double nivel,
     double felicidade,
-    Collection<Tipo> tipos
+    Collection<Tipo> tipos,
+    Collection<Ataque> ataques
   ) {
     this.nome = nome;
     this.altura = altura;
@@ -55,6 +79,7 @@ public class Pokemon {
     this.nivel = nivel;
     this.felicidade = felicidade;
     this.tipos = tipos;
+    this.ataques = ataques;
   }
 
   public String getNome() {
@@ -116,8 +141,13 @@ public class Pokemon {
   public Collection<Tipo> getTipos() {
     return tipos;
   }
+
   public Collection<Tipo> setTipos() {
     return tipos;
+  }
+
+  public Collection<Ataque> getAtaques() {
+    return ataques;
   }
 
   public Long getId() {

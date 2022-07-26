@@ -22,14 +22,11 @@ public class AtaqueTest {
 
   @Test
   public void deve_ser_obrigatorio_informar_um_tipo(){
-    int forca = 20;
-    int acuracia = 88;
-    String descricao = "Jato poderoso de água, que pode afogar os inimigos";
-    int ponto_de_poder = 25;
+  
     Categoria categoria = Categoria.FISICO;
-    Tipo tipoEsperado = new Tipo("Fantasma");
+    Tipo tipoEsperado = new Tipo("Água");
 
-    Ataque ataque = new Ataque(descricao, forca, acuracia, descricao, ponto_de_poder, categoria, tipoEsperado);
+    Ataque ataque = new AtaqueBuilder().comTipo(tipoEsperado).construir();
   
     assertEquals(tipoEsperado, ataque.getTipo());
   }
