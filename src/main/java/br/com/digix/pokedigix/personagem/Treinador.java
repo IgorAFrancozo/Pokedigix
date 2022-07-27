@@ -36,6 +36,14 @@ public class Treinador extends Personagem {
     this.insignias.add(insignia);
   }
 
+  public int getDinheiro() {
+    return dinheiro;
+  }
+
+  public int getNivel() {
+    return nivel;
+  }
+
   public Collection<Insignia> getInsignias() {
     return insignias;
   }
