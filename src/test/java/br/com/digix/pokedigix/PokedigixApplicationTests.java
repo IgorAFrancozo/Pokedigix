@@ -9,5 +9,4 @@ class PokedigixApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }

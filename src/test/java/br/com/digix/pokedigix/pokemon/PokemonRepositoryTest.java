@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import br.com.digix.pokedigix.ataque.AcuraciaInvalidaException;
 import br.com.digix.pokedigix.ataque.Ataque;
 import br.com.digix.pokedigix.ataque.AtaqueBuilder;
 import br.com.digix.pokedigix.tipo.Tipo;
@@ -54,7 +55,7 @@ public class PokemonRepositoryTest {
   }
 
   @Test
-  public void deve_salvar_um_pokemon_com_ataque() {
+  public void deve_salvar_um_pokemon_com_ataque() throws Exception {
     Ataque ataque = new AtaqueBuilder().construir();
     Pokemon pokemon = new PokemonBuilder().comAtaque(ataque).construir();
     

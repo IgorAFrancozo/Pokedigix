@@ -20,7 +20,7 @@ public class AtaqueRepositoryTest {
   private TipoRepository tipoRepository;
 
   @Test
-  public void deve_salvar_um_ataque() {
+  public void deve_salvar_um_ataque() throws Exception {
     // Arrange
     String nomeEsperado = "Aqua Jet";
     double forcaEsperada = 25;
@@ -51,7 +51,7 @@ public class AtaqueRepositoryTest {
   }
 
   @Test
-  public void deve_salvar_um_tipo_para_um_ataque() {
+  public void deve_salvar_um_tipo_para_um_ataque() throws Exception {
     int forca = 20;
     int acuracia = 88;
     String descricao = "Jato poderoso de água, que pode afogar os inimigos";
@@ -78,7 +78,7 @@ public class AtaqueRepositoryTest {
   }
 
   @Test
-  public void deve_buscar_um_ataque_pelo_tipo(){
+  public void deve_buscar_um_ataque_pelo_tipo() throws Exception{
     int forca = 20;
     int acuracia = 88;
     String descricao = "Jato poderoso de água, que pode afogar os inimigos";
