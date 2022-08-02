@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 
 @MappedSuperclass
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Personagem {
+public abstract class Personagem {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
