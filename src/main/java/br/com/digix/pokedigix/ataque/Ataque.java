@@ -1,7 +1,8 @@
 package br.com.digix.pokedigix.ataque;
 
+import br.com.digix.pokedigix.pokemon.Pokemon;
+import br.com.digix.pokedigix.tipo.Tipo;
 import java.util.Collection;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,9 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-
-import br.com.digix.pokedigix.pokemon.Pokemon;
-import br.com.digix.pokedigix.tipo.Tipo;
 
 @Entity
 public class Ataque {
@@ -44,10 +42,10 @@ public class Ataque {
   private Tipo tipo;
 
   @ManyToMany(mappedBy = "ataques")
-  Collection <Pokemon> pokemons;
+  Collection<Pokemon> pokemons;
 
-  
- 
+  protected Ataque() {}
+
   public Ataque(
     String nome,
     double forca,
@@ -56,8 +54,8 @@ public class Ataque {
     double ponto_de_poder,
     Categoria categoria,
     Tipo tipo
-  ) throws Exception {
-
+  )
+    throws Exception {
     validarAcuracia(acuraciaEsperada);
     validarForca(categoria, forca);
     validarTipo(categoria, tipo);
@@ -71,32 +69,47 @@ public class Ataque {
     this.tipo = tipo;
   }
 
-  private void validarTipo(Categoria categoria, Tipo tipo) throws TipoInvalidoParaCategoriaException {
-    if((categoria.equals(Categoria.FISICO) && tipo == null) || (categoria.equals(Categoria.ESPECIAL) && tipo == null)){
+  private void validarTipo(Categoria categoria, Tipo tipo)
+    throws TipoInvalidoParaCategoriaException {
+    if (
+      (categoria.equals(Categoria.FISICO) && tipo == null) ||
+      (categoria.equals(Categoria.ESPECIAL) && tipo == null)
+    ) {
       throw new TipoInvalidoParaCategoriaException(tipo);
     }
   }
-  private void validarForca(Categoria categoria, double forca) throws ForcaInvalidaParaCategoriaException {
-    if((categoria.equals(Categoria.FISICO) && forca <= 0) || (categoria.equals(Categoria.ESPECIAL) && forca <= 0)){
+
+  private void validarForca(Categoria categoria, double forca)
+    throws ForcaInvalidaParaCategoriaException {
+    if (
+      (categoria.equals(Categoria.FISICO) && forca <= 0) ||
+      (categoria.equals(Categoria.ESPECIAL) && forca <= 0)
+    ) {
       throw new ForcaInvalidaParaCategoriaException(categoria);
     }
   }
 
-  private void validarAcuracia(double acuraciaEsperada) throws AcuraciaInvalidaException {
-    if(acuraciaEsperada < 0 || acuraciaEsperada > 100){
-    throw new AcuraciaInvalidaException();
+  private void validarAcuracia(double acuraciaEsperada)
+    throws AcuraciaInvalidaException {
+    if (acuraciaEsperada < 0 || acuraciaEsperada > 100) {
+      throw new AcuraciaInvalidaException();
     }
   }
 
-  public Ataque(String nome, int acuracia, String descricao, int ponto_de_poder) {
+  public Ataque(
+    String nome,
+    int acuracia,
+    String descricao,
+    int ponto_de_poder
+  ) {
     this.nome = nome;
     this.acuracia = acuracia;
     this.descricao = descricao;
     this.ponto_de_poder = ponto_de_poder;
     this.categoria = Categoria.EFEITO;
-}
+  }
 
-public Tipo getTipo() {
+  public Tipo getTipo() {
     return this.tipo;
   }
 
@@ -139,14 +152,15 @@ public Tipo getTipo() {
   public void setPonto_de_poder(double ponto_de_poder) {
     this.ponto_de_poder = ponto_de_poder;
   }
-  
+
   public Collection<Pokemon> getPokemons() {
     return pokemons;
   }
-  
-    public Object getCategoria() {
-      return this.categoria;
-    }
+
+  public Categoria getCategoria() {
+    return this.categoria;
+  }
+
   public Long getId() {
     return this.id;
   }
