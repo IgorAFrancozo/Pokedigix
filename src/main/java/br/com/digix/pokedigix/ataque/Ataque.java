@@ -164,4 +164,7 @@ public class Ataque {
   public Long getId() {
     return this.id;
   }
+
+public void setCategoriaAtaque(Categoria categoria2) {
+}
 }

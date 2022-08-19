@@ -16,20 +16,19 @@ public class AtaqueResponseDTO {
   public AtaqueResponseDTO(
     Long id,
     String nome,
-    double forca,
-    double acuracia,
-    String descricao,
+    double d,
+    double e,
+    String string,
     double ponto_de_poder,
-    Categoria categoria,
-    TipoResponseDTO tipo
+    Categoria categoria2, TipoResponseDTO tipo
   ) {
     this.id = id;
     this.nome = nome;
-    this.forca = forca;
-    this.acuracia = acuracia;
-    this.descricao = descricao;
+    this.forca = d;
+    this.acuracia = e;
+    this.descricao = string;
     this.ponto_de_poder = ponto_de_poder;
-    this.categoria = categoria;
+    this.categoria = categoria2;
     this.tipo = tipo;
   }
 

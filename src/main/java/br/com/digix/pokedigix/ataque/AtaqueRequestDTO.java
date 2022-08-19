@@ -1,7 +1,5 @@
 package br.com.digix.pokedigix.ataque;
 
-import br.com.digix.pokedigix.tipo.TipoResponseDTO;
-
 public class AtaqueRequestDTO {
 
   private String nome;
@@ -14,13 +12,14 @@ public class AtaqueRequestDTO {
 
   
   
-  public AtaqueResponseDTO(String nome, double forca, double acuracia, String descricao, double ponto_de_poder, Categoria categoria, Long tipoId) {
+  public void AtaqueResponseDTO(String nome, double forca, double acuracia, String descricao, double ponto_de_poder, Categoria categoria, Long tipoId) {
     this.nome = nome;
     this.forca = forca;
     this.acuracia = acuracia;
     this.descricao = descricao;
     this.ponto_de_poder = ponto_de_poder;
     this.categoria = categoria;
+    this.tipoId = tipoId;
   }
 
   
