@@ -8,8 +8,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @SpringBootApplication
 public class PokedigixApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(PokedigixApplication.class, args);
-	}
-
+  public static void main(String[] args) {
+    SpringApplication.run(PokedigixApplication.class, args);
+  }
 }

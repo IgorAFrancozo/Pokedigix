@@ -52,26 +52,26 @@ public class AtaqueController {
     );
   }
 
-  @Operation(summary = "Criar um  ataque usando o Tipo")
+  @Operation(summary = "Criar um novo Ataque que pode ser usado para Pokemons")
   @ApiResponse(
     responseCode = "201",
     description = "Ataque criado usando o Tipo"
   )
   @PostMapping(consumes = { "application/json" })
   public ResponseEntity<AtaqueResponseDTO> criarAtaque(
-    @RequestBody AtaqueRequestDTO Ataque
+    @RequestBody AtaqueRequestDTO ataqueRequestDTO
   ) throws Exception {
-    Tipo tipo = TipoRepository.findById(Ataque.getTipoId()).get();
+    Tipo tipo = TipoRepository.findById(ataqueRequestDTO.getTipoId()).get();
     Ataque ataque;
     try {
       ataque =
         new Ataque(
-          Ataque.getNome(),
-          Ataque.getAcuracia(),
-          Ataque.getForca(),
-          Ataque.getDescricao(),
-          Ataque.getPonto_de_poder(),
-          Ataque.getCategoria(),
+          ataqueRequestDTO.getNome(),
+          ataqueRequestDTO.getAcuracia(),
+          ataqueRequestDTO.getForca(),
+          ataqueRequestDTO.getDescricao(),
+          ataqueRequestDTO.getPonto_de_poder(),
+          ataqueRequestDTO.getCategoria(),
           tipo
         );
       ataqueRepository.save(ataque);
